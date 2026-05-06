@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <title>Salvation Breakers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="fitWrap" class="fit-wrap">
+    <div class="game-frame">
+    <div class="game-shell">
+    
+    	<!-- =============== Top HUD =============== -->
+    	<div class="hud" id="topHUD">
+    		<div id="waveNum"  class="num big">1</div>
+    			<div id="levelNum" class="num">1</div>
+    			<div class="exp-track">
+    				<div class="exp-fill" id="expFill"></div>
+    				<div class="exp-frame"></div>
+    			</div>
+    		<div id="coinNum"  class="num sm right">0</div>
+    		<div id="scoreNum" class="num sm right">0</div>
+    		<div id="speedBtn" class="default-div-btn btn-square-default">1x</div>
+    		<div id="pauseBtn" class="unique-div-btn"></div>
+    	</div>
+    
+    	<!-- =============== Battlefield =============== -->
+    	<div class="stage-wrap">
+    	<div class="stage">
+    		<canvas id="game"></canvas>
+    		<img id="soldierSprite" src="/img/character_model_1_angle_3.gif" class="soldier-sprite" alt="soldier">
+    		<div id="bossWarn" class="warn-banner">BOSS APPROACHING</div>
+    		
+    		
+    		<!-- ----- Pause Overlay ----- -->
+    		<div id="pauseOverlay" class="game-overlay hidden">
+    		<div class="overlay-panel">
+    			<div class="overlay-panel-header-long">
+    				<div class="overlay-title">Paused</div>
+    			</div>
+    			<div class="pause-panel-body overlay-background-grey">
+    				<div class="pause-panel-main">
+    					<div class="pause-panel-row1">Option in effect</div>
+    					<div class="pause-panel-row2 overlay-background-black">
+    						<div class="pause-traits-grid" id="pauseTraitsGrid"></div>
+    					</div>
+    					<div class="pause-panel-row3">Removed Weapons</div>
+    					<div class="pause-panel-row4 overlay-background-stripe">
+    						<div id="overlay_pause_removal_list" class="weapon-removal-removed-list"></div>
+    					</div>
+    					<div class="overlay-panel-body-action">
+    						<div class="default-div-btn btn_view_dps"></div>
+    						<div class="default-div-btn btn-long-default btn_viewInventory">Inventory</div>
+    						<div class="default-div-btn btn-long-default btn_viewTraits">Traits Obtained</div>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="overlay-actions">
+    				<div id="btn_resume" class="default-div-btn btn-normal-default">Continue</div>
+    				<div id="btn_quickend" class="default-div-btn btn-normal-red">Quick End</div>
+    			</div>
+    		</div>
+    		</div>
+    		
+    		
+    		
+    		<!-- ----- Game Over Overlay ----- -->
+    		<div id="gameoverOverlay" class="game-overlay hidden">
+    		<div class="overlay-panel">
+    			<div class="gameover-panel-body">
+    				<div class="gameover-panel-row1"></div>
+    				<div class="gameover-panel-row2" id="gameover_scoreboard_list"></div>
+    				<div class="gameover-panel-row3">
+    					<div class="gameover-total-point" id="gameover_total_point"></div>
+    				</div>
+    				<div class="gameover-panel-row4"></div>
+    				<div class="overlay-panel-body-action">
+    					<div class="default-div-btn btn_view_dps"></div>
+    					<div class="default-div-btn btn-normal-blue" id="btn_restart">Restart</div>
+    				</div>
+    			</div>
+    		</div>
+    		</div>
+    		
+    		
+    			
+    		<!--  ----- Trait overlay ----- -->
+    		<div id="traitOverlay" class="game-overlay hidden">
+    		<div class="overlay-panel">
+    			<div class="overlay-panel-header-long">
+    				<div class="overlay-title">Select Trait</div>
+    			</div>
+    			<div class="trait-panel-body overlay-background-grey">
+    				<div id="traitCards" class="trait-card-list"></div>
+    				
+    				<div class="overlay-panel-body-action">
+    					<div class="default-div-btn btn-long-default btn_viewInventory">Inventory</div>
+    					<div class="default-div-btn btn-long-default btn_viewTraits">Traits Obtained</div>
+    				</div>
+    			</div>
+    			<div class="overlay-actions">
+    				<div id="traitStartBtn" class="default-div-btn btn-normal-blue disabled">Select</div>
+    			</div>
+    		</div>
+    		</div>
+    		
+    		
+    		
+    		<!--  ----- View Trait overlay ----- -->
+    		<div id="traitOverlayViewer" class="game-overlay hidden">
+    		<div class="overlay-panel">
+    			<div class="overlay-panel-header-short">
+    				<div class="overlay-title">Traits</div>
+    				<div class="default-div-btn btn-overlay-close" id="closeTraitViewerBtn"></div>
+    			</div>
+    			<div class="view-trait-panel-body overlay-background-grey">
+    				<div id="traitList" class="trait-list overlay-background-black"></div>
+    			</div>
+    		</div>
+    		</div>
+    		
+    		
+    		<!--  ----- DPS / Stats overlay ----- -->
+    		<div id="dpsOverlay" class="game-overlay hidden">
+    		<div class="overlay-panel">
+    			<div class="overlay-panel-header-short">
+    				<div class="overlay-title">Stats</div>
+    				<div class="default-div-btn btn-overlay-close" id="btnDPS_close_view"></div>
+    			</div>
+    			<div class="dps-panel-body">
+    				<div id="dpsList" class="dps-list"></div>
+    			</div>
+    		</div>
+    		</div>
+    		
+    		
+    		<!-- ----- Shop overlay ----- -->
+    		<div id="shopOverlay" class="game-overlay hidden">
+    		<div class="overlay-panel">
+    			<div class="overlay-panel-header-long">
+    				<div class="overlay-title">Shop</div>
+    			</div>
+    			<div class="shop-panel-body overlay-background-grey">
+    				<div class="shop-panel-row1 overlay-background-black">
+    					<div class="shop-row1-title hidden"><div id="shop_expand_count">69</div></div>
+    					<div class="shop-grid" id="shopGrid"></div>
+    				</div>
+    				<div class="shop-panel-row2 overlay-background-stripe" id="shopLayoutOffer">
+    					<div id="shopOffer" class="shop-offer"></div>
+    				</div>
+    				<div class="overlay-panel-body-action">
+    					<div class="default-div-btn btn-shop-weapon-removal" id="btnShop_weaponRemoval">
+    						<div class="btn-title">Weapon Removal</div>
+    						<div class="btn-subtitle">
+    							<div class="subtitle-label">Remaining attempt(s):</div>
+    							<div class="subtitle-value btn_subtitle_removal">5</div>
+    						</div>
+    					</div>
+    					<div class="unique-div-btn" id="btn_shop_reroll">
+    						<div class="btn-title">Refresh</div>
+    						<div class="btn-subtitle">
+    							<div class="subtitle-label">Remaining attempt(s):</div>
+    							<div class="subtitle-value" id="subtitle_btn_shop_reroll">10</div>
+    						</div>
+    					</div>
+    					<div class="default-div-btn btn-normal-default" id="btnShop_close_view">Return</div>
+    				</div>
+    			</div>
+    			<div class="overlay-actions" id="shopActionRow2">
+    				<div class="unique-div-btn btn_alert_red" id="btn_shop_close">Start Battle</div>
+    			</div>
+    		</div>
+    		</div>
+    		
+    		
+    		
+    		<!--  ----- Weapon Removal overlay ----- -->
+    		<div id="weaponRemovalOverlay" class="game-overlay hidden">
+    		<div class="overlay-panel">
+    			
+    			<div class="removal-panel-header">
+    				<!-- gap -->
+    			</div>
+    			
+    			<div class="removal-panel-body">
+    				<div class="removal-panel-row1 overlay-background-grey">
+    					<div class="removal-panel-row1-header">Remove Weapon Type</div>
+    					<div class="weapon-removal-removed-area overlay-background-stripe">
+    						<div id="weaponRemovalRemovedList" class="weapon-removal-removed-list"></div>
+    					</div>
+    				</div>
+    				
+    				<div class="removal-panel-row2 overlay-background-grey">
+    					<div class="weapon-removal-offer-area overlay-background-stripe">
+    						<div id="weaponRemovalOffer" class="shop-offer">
+    							<!-- Filled by JS -->
+    						</div>
+    					</div>
+    
+    					<div class="overlay-panel-body-action">
+    						<div class="default-div-btn btn-shop-weapon-removal" id="weaponRemovalConfirmBtn">
+    							<div class="btn-title">Weapon Removal</div>
+    							<div class="btn-subtitle">
+    								<div class="subtitle-label">Remaining attempt(s):</div>
+    								<div class="subtitle-value btn_subtitle_removal">5</div>
+    							</div>
+    						</div>
+    					</div>
+    					
+    				</div>
+    			</div>
+    			<div class="overlay-actions">
+    				<div id="weaponRemovalCancelBtn" class="default-div-btn btn-normal-red">Cancel</div>
+    			</div>
+    				
+    		</div>
+    		</div>
+    		
+    
+    	</div>
+    	</div>
+    	
+    	<!-- =============== Bottom Section =============== -->
+    	<!-- Barricade HP -->
+    	<div class="hp-container">
+    		<div class="hp-bar" id="hpBar">
+    			<div class="fill" id="hpFill"></div>
+    			<div class="text" id="hpText">100%</div>
+    		</div>
+    		<div class="hp-frame"></div>
+    	</div>
+    	
+    	<!-- Inventory -->
+    	<div class="inventory-wrap">
+    		<div class="inventory-frame"></div>
+    		<div class="inventory-grid" id="inventoryGrid"></div>
+    	</div>
+    		
+    </div>
+    </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
