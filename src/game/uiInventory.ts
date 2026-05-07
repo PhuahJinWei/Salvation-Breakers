@@ -1,4 +1,5 @@
 import { GAME_STATE } from './state';
+import { publicAssetPath } from './assets';
 
 export function renderInventory(): void {
 	const invGrid = document.getElementById('inventoryGrid');
@@ -15,14 +16,14 @@ export function renderInventory(): void {
 			const bg = document.createElement('img');
 			bg.className = 'slot-layer slot-bg';
 			bg.alt = 'tier background';
-			bg.src = `/img/UI_battlefield_inventory_slot_background_tier_${item.tier ?? 1}.png`;
+			bg.src = publicAssetPath(`/img/UI_battlefield_inventory_slot_background_tier_${item.tier ?? 1}.png`);
 			bg.draggable = false;
 			bg.addEventListener('dragstart', (e) => e.preventDefault());
 			d.appendChild(bg);
 
 			const gun = document.createElement('img');
 			gun.className = 'slot-layer slot-gun';
-			gun.src = '/img/item/icon/icon_gun_' + String(item.key) + '.png';
+			gun.src = publicAssetPath('/img/item/icon/icon_gun_' + String(item.key) + '.png');
 			gun.draggable = false;
 			gun.addEventListener('dragstart', (e) => e.preventDefault());
 			d.appendChild(gun);

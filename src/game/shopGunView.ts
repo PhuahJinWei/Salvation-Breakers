@@ -1,4 +1,5 @@
 import { GUN_CONFIG } from './config';
+import { publicAssetPath, publicAssetUrl } from './assets';
 import { CELL, CELL_GAP } from './shopConfig';
 import type { ShapeBounds } from './shopTypes';
 
@@ -83,7 +84,7 @@ export function createGunShapeElement(
 		d.style.width = cellSize + 'px';
 		d.style.height = cellSize + 'px';
 
-		d.style.backgroundImage = "url('/img/UI_shop_slot_background_tier_" + tier + ".png')";
+		d.style.backgroundImage = publicAssetUrl('/img/UI_shop_slot_background_tier_' + tier + '.png');
 		d.style.backgroundSize = '100% 100%';
 		d.style.backgroundRepeat = 'no-repeat';
 		d.style.backgroundPosition = 'center';
@@ -92,7 +93,7 @@ export function createGunShapeElement(
 
 	const spriteMini = document.createElement('img');
 	spriteMini.className = 'gun-sprite-mini';
-	spriteMini.src = '/img/item/shop/gun_shop_' + key + '.png';
+	spriteMini.src = publicAssetPath('/img/item/shop/gun_shop_' + key + '.png');
 	spriteMini.style.position = 'absolute';
 	spriteMini.style.left = '0px';
 	spriteMini.style.top = '0px';

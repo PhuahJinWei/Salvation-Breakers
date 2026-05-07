@@ -1,4 +1,5 @@
 import { CANVAS_H, CANVAS_W, FRAME_H, FRAME_W } from './config';
+import { publicAssetPath } from './assets';
 
 type WiredButton = HTMLButtonElement & { _wired?: boolean };
 type TimedElement = HTMLElement & { _hideTO?: ReturnType<typeof setTimeout> };
@@ -37,11 +38,11 @@ fitToViewport();
 // ===== Soldier Facing Angle GIF ===== //
 export const soldierSpriteEl = getRequiredElement<HTMLImageElement>('soldierSprite');
 export const SOLDIER_ANGLES = [
-	'/img/character_model_1_angle_1.gif',
-	'/img/character_model_1_angle_2.gif',
-	'/img/character_model_1_angle_3.gif',
-	'/img/character_model_1_angle_4.gif',
-	'/img/character_model_1_angle_5.gif',
+	publicAssetPath('/img/character_model_1_angle_1.gif'),
+	publicAssetPath('/img/character_model_1_angle_2.gif'),
+	publicAssetPath('/img/character_model_1_angle_3.gif'),
+	publicAssetPath('/img/character_model_1_angle_4.gif'),
+	publicAssetPath('/img/character_model_1_angle_5.gif'),
 ];
 
 SOLDIER_ANGLES.forEach((src) => {

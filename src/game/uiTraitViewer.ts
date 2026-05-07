@@ -1,6 +1,7 @@
 import { GAME_STATE } from './state';
 import { TRAITS, type TraitDefinition } from './traits';
 import { pauseTraitsGrid, traitListBox, traitOverlayViewer } from './dom';
+import { publicAssetUrl } from './assets';
 
 export function updateTraitViewer(): void {
 	traitListBox.innerHTML = '';
@@ -65,7 +66,7 @@ export function updatePauseTraitGrid(): void {
 		const iconImg = document.createElement('div');
 		iconImg.className = 'trait-icon-img';
 		const def = TRAITS.find((x) => x.id === t.id);
-		iconImg.style.backgroundImage = 'url("/img/UI/trait icon/icon_' + String(def?.icon || t.id) + '.png")';
+		iconImg.style.backgroundImage = publicAssetUrl('/img/UI/trait icon/icon_' + String(def?.icon || t.id) + '.png');
 		iconFrame.appendChild(iconImg);
 
 		slot.appendChild(icon);

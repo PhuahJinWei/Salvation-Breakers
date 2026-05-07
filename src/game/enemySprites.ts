@@ -1,4 +1,5 @@
 import { SpriteSheetAnimation } from './spriteAnimation';
+import { publicAssetPath } from './assets';
 import type { EnemyConfig, EnemyRuntime } from './types';
 
 export interface EnemySpriteConfig {
@@ -17,7 +18,7 @@ const DEFAULT_SPRITE_KEY = 'mob_type_a';
 
 export const ENEMY_SPRITES: Record<string, EnemySpriteConfig> = {
 	mob_type_a: {
-		src: '/img/entity/mob_typeA_spritesheet.png',
+		src: publicAssetPath('/img/entity/mob_typeA_spritesheet.png'),
 		frameCount: 8,
 		fps: 8,
 		visualScale: {

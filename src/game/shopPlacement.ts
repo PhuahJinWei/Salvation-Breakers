@@ -1,4 +1,5 @@
 import { GUN_CONFIG } from './config';
+import { publicAssetUrl } from './assets';
 import { CELL, CELL_GAP, GRID_COLS, GRID_MAGNET_MARGIN, GRID_ROWS, cellStep } from './shopConfig';
 import { getShapeBounds } from './shopGunView';
 import type { ShopItem } from './shopTypes';
@@ -188,7 +189,7 @@ export class PlacementPreview {
 			cell.style.width = CELL + 'px';
 			cell.style.height = CELL + 'px';
 			cell.style.position = 'absolute';
-			cell.style.backgroundImage = "url('/img/UI_shop_slot_background_preview.png')";
+			cell.style.backgroundImage = publicAssetUrl('/img/UI_shop_slot_background_preview.png');
 			cell.style.backgroundRepeat = 'no-repeat';
 			cell.style.backgroundSize = '100% 100%';
 			cell.style.backgroundPosition = 'center';

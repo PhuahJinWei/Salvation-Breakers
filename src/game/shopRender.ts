@@ -1,4 +1,5 @@
 import { GUN_CONFIG } from './config';
+import { publicAssetPath, publicAssetUrl } from './assets';
 import { CELL, MINI_CELL, cellStep } from './shopConfig';
 import { shopGridEl, shopOfferEl } from './shopElements';
 import { appendOutlineBorderFull, createGunShapeElement, getShapeBounds, getShopOfferItemScale, updateShopOfferLayout } from './shopGunView';
@@ -57,7 +58,7 @@ export function renderPlaced(onDragStart: DragStartHandler): void {
 			cell.style.top = (dr * cellStep) + 'px';
 			cell.style.width = CELL + 'px';
 			cell.style.height = CELL + 'px';
-			cell.style.backgroundImage = "url('/img/UI_shop_slot_background_tier_" + it.tier + ".png')";
+			cell.style.backgroundImage = publicAssetUrl('/img/UI_shop_slot_background_tier_' + it.tier + '.png');
 			cell.style.backgroundSize = '100% 100%';
 			cell.style.backgroundRepeat = 'no-repeat';
 			cell.style.backgroundPosition = 'center';
@@ -68,7 +69,7 @@ export function renderPlaced(onDragStart: DragStartHandler): void {
 
 		const sprite = document.createElement('img');
 		sprite.className = 'gun-sprite';
-		sprite.src = '/img/item/shop/gun_shop_' + it.key + '.png';
+		sprite.src = publicAssetPath('/img/item/shop/gun_shop_' + it.key + '.png');
 		sprite.style.width = shapeWidthPx + 'px';
 		sprite.style.height = shapeHeightPx + 'px';
 		sprite.style.objectFit = 'contain';

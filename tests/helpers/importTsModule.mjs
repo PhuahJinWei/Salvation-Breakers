@@ -23,6 +23,7 @@ function prepareGameModules() {
 	mkdirSync(join(OUT_DIR, 'game'), { recursive: true });
 
 	const files = [
+		'assets.ts',
 		'combatMath.ts',
 		'config.ts',
 		'enemySprites.ts',

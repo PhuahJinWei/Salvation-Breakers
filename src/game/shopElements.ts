@@ -1,4 +1,5 @@
 import { CELL, CELL_GAP, GRID_COLS, GRID_ROWS } from './shopConfig';
+import { publicAssetUrl } from './assets';
 
 export const shopOverlay = document.getElementById('shopOverlay');
 export const shopGridEl = document.getElementById('shopGrid');
@@ -27,7 +28,7 @@ export function initializeShopGrid(): void {
 			slot.style.top = (r * (CELL + CELL_GAP)) + 'px';
 			slot.style.width = CELL + 'px';
 			slot.style.height = CELL + 'px';
-			slot.style.backgroundImage = "url('/img/UI/UI_shop_slot_default.png')";
+			slot.style.backgroundImage = publicAssetUrl('/img/UI/UI_shop_slot_default.png');
 			slot.style.backgroundRepeat = 'no-repeat';
 			slot.style.backgroundSize = '100% 100%';
 			slot.style.backgroundPosition = 'center';

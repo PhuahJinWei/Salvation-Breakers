@@ -1,5 +1,6 @@
 import { GUN_CONFIG } from './config';
 import { dpsList, dpsOverlay } from './dom';
+import { publicAssetPath } from './assets';
 import { GAME_STATE } from './state';
 
 export function updateDpsOverlay(): void {
@@ -17,7 +18,7 @@ export function updateDpsOverlay(): void {
 		const row = document.createElement('div');
 		row.className = 'dps-card';
 		row.innerHTML = `
-			<div class="dps-card-icon overlay-background-stripe"><img src="/img/item/icon/icon_gun_${key}.png"></div>
+			<div class="dps-card-icon overlay-background-stripe"><img src="${publicAssetPath(`/img/item/icon/icon_gun_${key}.png`)}"></div>
 			<div class="dps-card-detail">
 				<div class="dps-card-header">
 					<span class="dps-name">${GUN_CONFIG[key].name}</span>

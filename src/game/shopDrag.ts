@@ -1,4 +1,5 @@
 import { makeSfx } from './audio';
+import { publicAssetPath } from './assets';
 import { CELL, GHOST_GRID_OFFSET_X, GHOST_GRID_OFFSET_Y, cellStep, num_shop_offer_max_item } from './shopConfig';
 import { shopGridEl } from './shopElements';
 import { getShapeBounds } from './shopGunView';
@@ -270,7 +271,7 @@ function createGhostFromItem(item: ShopItem): HTMLDivElement {
 
 	const spriteMini = document.createElement('img');
 	spriteMini.className = 'gun-sprite-mini';
-	spriteMini.src = '/img/item/shop/gun_shop_' + item.key + '.png';
+	spriteMini.src = publicAssetPath('/img/item/shop/gun_shop_' + item.key + '.png');
 	spriteMini.style.position = 'absolute';
 	spriteMini.style.width = shapeWidthPx + 'px';
 	spriteMini.style.height = shapeHeightPx + 'px';

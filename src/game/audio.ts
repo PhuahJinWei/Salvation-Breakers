@@ -1,7 +1,8 @@
 import { GAME_STATE } from './state';
+import { publicAssetPath } from './assets';
 
 // ================= Sound Effects ================= //
-	export const bgm = new Audio('/sfx/bgm_battlefield_loop.mp3');
+	export const bgm = new Audio(publicAssetPath('/sfx/bgm_battlefield_loop.mp3'));
 	bgm.loop = true;
 	bgm.preload = 'auto';
 	bgm.volume = 0.4;
@@ -66,8 +67,9 @@ import { GAME_STATE } from './state';
 	
 	//play audio (stackable)
 	export function makeSfx(path, { volume = 0.6, pool = 4 } = {}) {
+		const src = publicAssetPath(path);
 		const poolArr = Array.from({ length: pool }, () => {
-			const a = new Audio(path);
+			const a = new Audio(src);
 			a.preload = 'auto';
 			a.volume = volume;
 			return a;
@@ -82,8 +84,9 @@ import { GAME_STATE } from './state';
 	}
 	//play audio (non-stackable same audio)
 	export function makeSfxNoOverlapWithin(path, { volume = 0.6, pool = 4, minGapMs = 1000 } = {}) {
+		const src = publicAssetPath(path);
 		const poolArr = Array.from({ length: pool }, () => {
-			const a = new Audio(path);
+			const a = new Audio(src);
 			a.preload = 'auto';
 			a.volume = volume;
 			return a;

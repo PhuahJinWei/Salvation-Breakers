@@ -1,5 +1,6 @@
 import { SFX_BTN_TRAIT_CARD, SFX_OVERLAY_APPEAR_TRAIT, SFX_PAUSE_BGM, SFX_PLAY_BGM } from './audio';
 import { traitCardsBox, traitOverlay, traitStart } from './dom';
+import { publicAssetUrl } from './assets';
 import { GAME_STATE } from './state';
 import { TRAITS, TRAIT_BASE_CARD_COUNT, TRAIT_EXTRA_CARD_CHANCE, pickTierForLevel } from './traits';
 import { refreshWeaponTimingsFromSnapshots, snapshotWeaponTimingsForType } from './weaponRuntime';
@@ -76,7 +77,7 @@ export function openTraitOverlay(): void {
 
 		const iconImg = document.createElement('div');
 		iconImg.className = 'trait-icon-img';
-		iconImg.style.backgroundImage = 'url("/img/UI/trait icon/icon_' + String(def.icon || o.id) + '.png")';
+		iconImg.style.backgroundImage = publicAssetUrl('/img/UI/trait icon/icon_' + String(def.icon || o.id) + '.png');
 		iconFrame.appendChild(iconImg);
 
 		const body = document.createElement('div');
